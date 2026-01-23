@@ -1,0 +1,21 @@
+[Unit]
+Description=Kill Minecraft when system RAM usage exceeds threshold
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/kill-minecraft-on-ram.sh
+Restart=always
+RestartSec=5
+# Good hardening defaults
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+# Allow reading /proc and sending signals is fine.
+
+[Install]
+WantedBy=multi-user.target
