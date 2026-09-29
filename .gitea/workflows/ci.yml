@@ -1,0 +1,16 @@
+name: shell-checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Syntax and fixtures
+        run: |
+          bash -n kill-minecraft-on-ram.sh tests/watchdog.sh
+          bash tests/watchdog.sh
